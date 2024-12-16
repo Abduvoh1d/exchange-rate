@@ -1,5 +1,7 @@
 # Exchange Rate
 
+Birinchi bo'lib yarn install qilib olasiz bu node_modeles file o'rnatish uchun.
+
 Bu loyiha ni yarn dev yoki npm run dev orqali ishga tushirish mumkin.
 
 Bu loyihani vercelga joylashtirganman link:https://exchange-rate-beige.vercel.app/  kirib ko'rishingoz mumkin
