@@ -1,23 +1,18 @@
-import {useContext, useEffect, useState} from "react";
-import {DataContext} from "../../context";
+import {useEffect, useState} from "react";
 import {IExchangeRate, IPairExchangeRate} from "../../types";
 import {Button, Col, Form, FormProps, Input, Row, Select} from "antd";
 import {useForm} from "antd/es/form/Form";
 import {Container} from "../container.tsx";
+import DataStore from "../../store";
 
 function Cash() {
     const [form] = useForm()
-    const context = useContext(DataContext);
     const [data, setData] = useState<IExchangeRate | null>(null);
     const [pairData, setPairData] = useState<IPairExchangeRate | null>(null);
 
-    if (!context) return null;
-
-    const {getExchangeRate, getPairExchangeRate} = context
-
     useEffect(() => {
         async function getData() {
-            const data = await getExchangeRate();
+            const data = await DataStore.getExchangeRate();
             setData(data);
         }
 
@@ -25,8 +20,7 @@ function Cash() {
     }, []);
 
     const onFinish: FormProps['onFinish'] = async (values) => {
-        console.log(values)
-        const data = await getPairExchangeRate(localStorage.getItem('money') as string, values.pair, Number(values.amount));
+        const data = await DataStore.getPairExchangeRate(localStorage.getItem('money') as string, values.pair, Number(values.amount));
         setPairData(data);
     };
 

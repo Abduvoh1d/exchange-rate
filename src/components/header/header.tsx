@@ -1,24 +1,19 @@
-import { FaGithub, FaTelegram } from "react-icons/fa6";
-import { Container } from "../container.tsx";
-import { useContext, useEffect, useState } from "react";
-import { DataContext } from "../../context";
-import { IExchangeRate } from "../../types";
-import { Select, Drawer, Button } from "antd";
-import { MenuOutlined } from "@ant-design/icons";
+import {FaGithub, FaTelegram} from "react-icons/fa6";
+import {Container} from "../container.tsx";
+import {useEffect, useState} from "react";
+import {IExchangeRate} from "../../types";
+import {Select, Drawer, Button} from "antd";
+import {MenuOutlined} from "@ant-design/icons";
 import {Link, Outlet} from "react-router-dom";
+import DataStore from "../../store";
 
 function Header() {
-    const context = useContext(DataContext);
     const [data, setData] = useState<IExchangeRate | null>(null);
     const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
-    if (!context) return null;
-
-    const { getExchangeRate } = context;
-
     useEffect(() => {
         async function getData() {
-            const data = await getExchangeRate();
+            const data = await DataStore.getExchangeRate();
             setData(data);
         }
 
@@ -40,7 +35,7 @@ function Header() {
 
     return (
         <>
-            <header className={"w-full border-b-2 shadow-sm sticky top-0 left-0 bg-white"}>
+            <header className={"w-full border-b-2 shadow-sm sticky top-0 left-0 z-10 bg-white"}>
                 <Container className={"flex items-center justify-between md:justify-between"}>
                     <img src="/logo.avif" alt="logo" width={90} height={90}/>
 
