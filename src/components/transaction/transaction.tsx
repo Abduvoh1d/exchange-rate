@@ -5,6 +5,7 @@ import dayjs from "dayjs";
 import { Container } from "../container.tsx";
 import TextArea from "antd/es/input/TextArea";
 import DataStore from "../../store";
+import {observer} from "mobx-react";
 
 interface Transaction {
     id: number;
@@ -173,4 +174,4 @@ const Transaction: React.FC = () => {
     );
 };
 
-export default Transaction;
+export default observer(Transaction);

@@ -4,6 +4,7 @@ import {Button, Col, Form, FormProps, Input, Row, Select} from "antd";
 import {useForm} from "antd/es/form/Form";
 import {Container} from "../container.tsx";
 import DataStore from "../../store";
+import {observer} from "mobx-react";
 
 function Cash() {
     const [form] = useForm()
@@ -67,4 +68,4 @@ function Cash() {
     );
 }
 
-export default Cash;
+export default observer(Cash);

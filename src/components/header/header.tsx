@@ -6,6 +6,7 @@ import {Select, Drawer, Button} from "antd";
 import {MenuOutlined} from "@ant-design/icons";
 import {Link, Outlet} from "react-router-dom";
 import DataStore from "../../store";
+import {observer} from "mobx-react";
 
 function Header() {
     const [data, setData] = useState<IExchangeRate | null>(null);
@@ -109,4 +110,4 @@ function Header() {
     );
 }
 
-export default Header;
+export default observer(Header);
